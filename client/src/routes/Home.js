@@ -1,5 +1,12 @@
+import { Map } from "../components/map/Index";
+import styles from "./Home.module.css";
+
 const Home = () => {
-   return <div>Home</div>;
+   return (
+      <div className={styles.container}>
+         <Map />
+      </div>
+   );
 };
 
 export default Home;
