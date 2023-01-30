@@ -9,8 +9,8 @@ import Control from "ol/control/Control";
 import { Overlay } from "ol";
 import "ol/ol.css";
 
-import { originalStyle } from "./featureStyle";
-import { flyTo, panTo } from "./moveAnimation";
+import { originalStyle, selectdStyle } from "./featureStyle";
+import { panTo } from "./moveAnimation";
 
 const getLocation = async () => {
    const pos = await new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ const getLocation = async () => {
 };
 
 const move = (map, location) => {
-   flyTo(map, location);
+   panTo(map, location);
 };
 
 export class OlMap {
@@ -61,7 +61,7 @@ export class OlMap {
    }
 
    moveToDefault() {
-      flyTo(this.olMap, this.location);
+      panTo(this.olMap, this.location);
    }
    moveToLocation(location) {
       panTo(this.olMap, location);
@@ -74,18 +74,35 @@ export class OlMap {
       this.olMap.addControl(control);
    }
 
-   addPoint(value, lon, lat) {
+   addFeature(id, value, lon, lat) {
       const feature = new Feature({
          labelPoint: new Point([lon, lat]),
       });
       feature.setGeometryName("labelPoint");
+      feature.setId(id);
       feature.value = value;
+      feature.lon = lon;
+      feature.lat = lat;
       this.vectorLayer.getSource().addFeature(feature);
    }
-   getPointInExtent() {
+   selectFeature(featureId) {
+      if (this.selectedFeature) {
+         this.selectedFeature.setStyle(originalStyle);
+      }
+      const feature = this.vectorLayer.getSource().getFeatureById(featureId);
+      this.selectedFeature = feature;
+      feature.setStyle(selectdStyle);
+
+      move(this.olMap, [feature.lon, feature.lat]);
+   }
+   getVisibleFeatures() {
       const extent = this.view.calculateExtent();
       const features = this.vectorLayer.getSource().getFeaturesInExtent(extent);
       return features;
+   }
+   getCoordinate() {
+      //new Point(view.getCenter()).transform("EPSG:3857", "EPSG:4326");
+      return new Point(this.view.getCenter()).getCoordinates();
    }
    setMarker(element, location) {
       this.markerOverlay.setElement(element);
@@ -97,5 +114,9 @@ export class OlMap {
    }
    un(type, listener) {
       this.olMap.un(type, listener);
+   }
+
+   clear() {
+      this.olMap.setTarget(null);
    }
 }

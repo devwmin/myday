@@ -1,9 +1,10 @@
-import { Map } from "../components/map/Index";
+import { Map } from "../components/Map";
 import styles from "./Home.module.css";
 
 const Home = () => {
    return (
-      <div className={styles.container}>
+      //<div className={styles.container}>
+      <div>
          <Map />
       </div>
    );

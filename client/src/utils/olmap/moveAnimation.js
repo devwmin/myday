@@ -21,6 +21,6 @@ export function panTo(map, location) {
    view.cancelAnimations();
    view.animate({
       center: location,
-      duration: 2000,
+      duration: 500,
    });
 }
