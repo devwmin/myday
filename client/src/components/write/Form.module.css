@@ -1,0 +1,11 @@
+.box {
+   position: fixed;
+   width: 80%;
+   max-width: 500px;
+   background-color: white;
+}
+.center {
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+}

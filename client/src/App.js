@@ -1,9 +1,9 @@
-import "./App.css";
+import styles from "./App.module.css";
 import { AppRouter } from "./components/Router";
 
 function App() {
    return (
-      <div className="App">
+      <div className={`app ${styles.container}`}>
          <AppRouter />
       </div>
    );

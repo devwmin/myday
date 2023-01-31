@@ -1,7 +1,12 @@
-.group {
+.post_wrap {
+   text-align: center;
    display: flex;
    flex-direction: column;
    gap: 5px;
+   overflow-y: auto;
+}
+.post_wrap::-webkit-scrollbar {
+   display: none;
 }
 .box {
    width: 300px;

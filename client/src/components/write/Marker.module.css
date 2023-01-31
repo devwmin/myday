@@ -1,0 +1,32 @@
+.wrap {
+   transform: translate(-50%, -50%);
+   width: 25px;
+   height: 25px;
+}
+.box {
+   width: 150px;
+   height: 40px;
+   border-radius: 10px;
+   background-color: white;
+   position: absolute;
+   top: -55px;
+   left: -20px;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   user-select: none;
+}
+.box::before {
+   content: "";
+   width: 25px;
+   height: 25px;
+   position: absolute;
+   background-color: inherit;
+   bottom: -25%;
+   left: 20px;
+   transform: rotate(45deg);
+   border-radius: 5px;
+   z-index: -1;
+}

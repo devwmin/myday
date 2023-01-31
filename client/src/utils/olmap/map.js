@@ -33,19 +33,11 @@ export class OlMap {
       this.view = new View({
          zoom: 15,
       });
-      this.markerOverlay = new Overlay({
-         autoPan: {
-            animation: {
-               duration: 250,
-            },
-         },
-      });
 
       this.olMap = new olMap({
          layers: [new TileLayer({ preload: 6, source: new OSM() }), this.vectorLayer],
          view: this.view,
       });
-      this.olMap.addOverlay(this.markerOverlay);
 
       if (!location) {
          getLocation().then((location) => {
@@ -100,13 +92,27 @@ export class OlMap {
       const features = this.vectorLayer.getSource().getFeaturesInExtent(extent);
       return features;
    }
+   clearFeatures() {
+      this.vectorLayer.getSource().clear();
+   }
    getCoordinate() {
       //new Point(view.getCenter()).transform("EPSG:3857", "EPSG:4326");
       return new Point(this.view.getCenter()).getCoordinates();
    }
-   setMarker(element, location) {
-      this.markerOverlay.setElement(element);
-      this.markerOverlay.setPosition(location);
+   addMarker(element, location) {
+      const markerOverlay = new Overlay({
+         element,
+         position: location,
+         autoPan: {
+            animation: {
+               duration: 250,
+            },
+         },
+      });
+      this.olMap.addOverlay(markerOverlay);
+   }
+   removeMarker() {
+      this.olMap.getOverlays().forEach((overlay) => this.olMap.removeOverlay(overlay));
    }
 
    on(type, listener) {

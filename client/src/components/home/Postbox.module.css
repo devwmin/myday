@@ -1,0 +1,25 @@
+.left_top {
+   position: absolute;
+   left: 50px;
+   top: 50px;
+   display: flex;
+   max-height: 30vh;
+}
+
+.btn_wrap {
+   display: flex;
+   flex-direction: column;
+}
+.btn {
+   width: 50px;
+   height: 30px;
+   border-radius: 5px;
+   border: none;
+   background-color: white;
+   font-size: 16px;
+   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+   margin: 0 5px;
+}
+.btn:hover {
+   transform: scale(1.1);
+}
