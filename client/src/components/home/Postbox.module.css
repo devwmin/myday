@@ -5,7 +5,17 @@
    display: flex;
    max-height: 30vh;
 }
-
+.post_wrap {
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   overflow-y: auto;
+   background-color: rgba(0, 0, 0, 0.1);
+}
+.post_wrap::-webkit-scrollbar {
+   display: none;
+}
 .btn_wrap {
    display: flex;
    flex-direction: column;
