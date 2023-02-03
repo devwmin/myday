@@ -1,4 +1,4 @@
-export const getTestData = () => [
+const data = [
    {
       id: 0,
       longitude: 14134621.428594515,
@@ -78,3 +78,14 @@ export const getTestData = () => [
       text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. At dolorum obcaecati corporis debitis tempore. Illo amet eveniet accusamus veniam. Necessitatibus architecto aliquid iure temporibus deleniti fugit expedita recusandae maxime, voluptate unde voluptatibus labore tempora suscipit reprehenderit quaerat facilis, dicta nemo quod voluptatem ea adipisci! Eligendi quaerat quos repellat corrupti accusamus!",
    },
 ];
+export const getTestData = () => data;
+export const insertData = (rating, longitude, latitude, text, imgFile) => {
+   data.push({
+      id: data.length,
+      rating,
+      longitude,
+      latitude,
+      text,
+      imgFile,
+   });
+};

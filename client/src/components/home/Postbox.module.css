@@ -3,10 +3,9 @@
    left: 50px;
    top: 50px;
    display: flex;
-   max-height: 30vh;
+   max-height: 50vh;
 }
 .post_wrap {
-   text-align: center;
    display: flex;
    flex-direction: column;
    gap: 5px;

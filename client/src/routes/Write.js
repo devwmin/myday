@@ -39,7 +39,7 @@ const Write = ({ mapObj }) => {
          {writing && (
             <>
                <div className={styles.background} onClick={onClick}></div>
-               <Form />
+               <Form coordinate={coordinate} />
             </>
          )}
       </div>
