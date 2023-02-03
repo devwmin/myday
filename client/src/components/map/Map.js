@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { OlMap } from "../utils/olmap/map";
+import { OlMap } from "../../utils/olmap/map";
 import styles from "./Map.module.css";
 
 const Map = ({ setMapObj }) => {

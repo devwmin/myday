@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getTestData } from "../utils/data/data";
-import Postbox from "../components/home/Postbox";
+import PostList from "../components/home/PostList";
 
 const Home = ({ mapObj }) => {
    const [datas, setDatas] = useState([]);
@@ -54,7 +54,7 @@ const Home = ({ mapObj }) => {
 
    return (
       <>
-         <Postbox features={visibles} mapObj={mapObj} />
+         <PostList datas={visibles} mapObj={mapObj} />
       </>
    );
 };

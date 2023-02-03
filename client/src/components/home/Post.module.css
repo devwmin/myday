@@ -1,4 +1,4 @@
-.box {
+.wrap {
    width: 300px;
    border-radius: 10px;
    font-size: 16px;
@@ -7,10 +7,10 @@
    background-color: white;
    cursor: pointer;
 }
-.box > span:first-child {
+.wrap > span:first-child {
    margin-right: 15px;
 }
-.box > span {
+.wrap > span {
    pointer-events: none;
 }
 .active {

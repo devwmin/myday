@@ -1,10 +1,23 @@
 import styles from "./Post.module.css";
 
-const Post = ({ feature, activeId }) => {
+const Post = ({ data, activeId }) => {
+   if (data.imgFile) {
+      console.log(data.imgFile);
+   }
    return (
-      <div className={`${styles.box} ${activeId === feature.id ? styles.active : ""}`} data-id={feature.id}>
-         <span>★{feature.rate || 0}</span>
-         <span>{feature.text.length > 20 ? `${feature.text.slice(0, 20)}...` : feature.text}</span>
+      <div className={`${styles.wrap} ${activeId === data.id && styles.active}`} data-id={data.id}>
+         {activeId === data.id ? (
+            <div>
+               <span>★{data.rate || 0}</span>
+               <span>{data.text}</span>
+               <img src={data.imgFile} alt="img" />
+            </div>
+         ) : (
+            <>
+               <span>★{data.rate || 0}</span>
+               <span>{data.text.length > 20 ? `${data.text.slice(0, 20)}...` : data.text}</span>
+            </>
+         )}
       </div>
    );
 };
