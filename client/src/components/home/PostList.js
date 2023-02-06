@@ -3,10 +3,13 @@ import styles from "./PostList.module.css";
 import Post from "./Post";
 import { useRef, useState } from "react";
 import { ScrollBar } from "./ScrollBar";
+import Popup from "../Popup";
+import Detail from "./Detail";
 
 const PostList = ({ datas, mapObj }) => {
    const navigate = useNavigate();
    const [activeId, setActiveId] = useState(-1);
+   const [openPopup, setOpenPopup] = useState(false);
    const target = useRef();
 
    const itemClick = (e) => {
@@ -14,6 +17,7 @@ const PostList = ({ datas, mapObj }) => {
       if (!isNaN(id)) {
          setActiveId(id);
          mapObj.selectFeature(id);
+         setOpenPopup(true);
       }
    };
    return (
@@ -21,12 +25,17 @@ const PostList = ({ datas, mapObj }) => {
          <ScrollBar>
             <div className={styles.post_wrap} onClick={itemClick} ref={target}>
                {datas && datas.length > 0 ? (
-                  datas?.map((data) => <Post key={data.id} data={data} activeId={activeId} />)
+                  datas?.map((data) => <Post key={data.id} data={data} active={activeId === data.id} />)
                ) : (
                   <div className={`${styles.box}`}> nothing data </div>
                )}
             </div>
          </ScrollBar>
+         {openPopup && (
+            <Popup onClose={() => setOpenPopup(false)}>
+               <Detail data={datas.find((data) => data.id === activeId)} />
+            </Popup>
+         )}
          <div className={styles.btn_wrap}>
             <button
                onClick={() => {
