@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import styles from "./Write.module.css";
 import Marker from "../components/write/Marker";
 import Form from "../components/write/Form";
+import Popup from "../components/Popup";
 
 const Write = ({ mapObj }) => {
    const markerRef = useRef();
@@ -28,19 +28,13 @@ const Write = ({ mapObj }) => {
          mapObj.addMarker(markerRef.current, coordinate);
       }
    }, [mapObj, coordinate]);
-
-   const onClick = (e) => {
-      setWrting(false);
-   };
-
    return (
       <div>
          {coordinate && <Marker markerRef={markerRef} onClick={() => setWrting(true)} />}
          {writing && (
-            <>
-               <div className={styles.background} onClick={onClick}></div>
+            <Popup onClose={() => setWrting(false)}>
                <Form coordinate={coordinate} />
-            </>
+            </Popup>
          )}
       </div>
    );
