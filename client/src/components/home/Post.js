@@ -4,7 +4,7 @@ const Post = ({ data, active }) => {
    return (
       <div className={`${styles.wrap} ${active && styles.active}`} data-id={data.id}>
          <span>★{data.rate || 0}</span>
-         <span>{data.text.length > 20 ? `${data.text.slice(0, 20)}...` : data.text}</span>
+         <span>{data.comment.length > 20 ? `${data.comment.slice(0, 20)}...` : data.comment}</span>
       </div>
    );
 };
