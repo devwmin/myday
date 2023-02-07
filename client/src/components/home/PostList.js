@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import styles from "./PostList.module.css";
 import Post from "./Post";
 import { useRef, useState } from "react";
-import { ScrollBar } from "./ScrollBar";
-import Popup from "../Popup";
-import PostForm from "../PostForm";
+import { ScrollBar } from "../common/ScrollBar";
+import Popup from "../common/Popup";
+import PostForm from "../common/PostForm";
 
 const PostList = ({ datas, mapObj }) => {
    const navigate = useNavigate();

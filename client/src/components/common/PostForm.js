@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
-import { insertData } from "../utils/data/data";
+import { insertData } from "../../utils/data/data";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 
 const PostForm = ({ coordinate, data }) => {
    const [rating, setRating] = useState(data?.rating || 2);

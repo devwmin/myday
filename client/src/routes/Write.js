@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Marker from "../components/write/Marker";
-import Popup from "../components/Popup";
-import PostForm from "../components/PostForm";
+import Popup from "../components/common/Popup";
+import PostForm from "../components/common/PostForm";
 
 const Write = ({ mapObj }) => {
    const markerRef = useRef();

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../routes/Home";
 import Write from "../routes/Write";
-import Map from "./map/Map";
+import Map from "./common/Map";
 
 export const AppRouter = () => {
    const [mapObj, setMapObj] = useState();
