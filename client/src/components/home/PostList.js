@@ -8,13 +8,13 @@ import Detail from "./Detail";
 
 const PostList = ({ datas, mapObj }) => {
    const navigate = useNavigate();
-   const [activeId, setActiveId] = useState(-1);
+   const [activeId, setActiveId] = useState();
    const [openPopup, setOpenPopup] = useState(false);
    const target = useRef();
 
    const itemClick = (e) => {
-      const id = parseInt(e.target.dataset.id);
-      if (!isNaN(id)) {
+      const id = e.target.dataset.id;
+      if (id) {
          setActiveId(id);
          mapObj.selectFeature(id);
          setOpenPopup(true);

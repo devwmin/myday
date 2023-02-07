@@ -1,8 +1,11 @@
+import { Rating } from "react-simple-star-rating";
+
 const Detail = ({ data }) => {
    return (
       <>
-         <span>★{data.rate || 0}</span>
-         <span>{data.text}</span>
+         <Rating initialValue={data.rating} readonly />
+         <span>{data.comment}</span>
+         <img src={data.file} alt="img" />
       </>
    );
 };
