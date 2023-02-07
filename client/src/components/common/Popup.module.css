@@ -11,9 +11,7 @@
    left: 50%;
    top: 50%;
    transform: translate(-50%, -50%);
-}
-.btn {
-   position: fixed;
-   right: -20px;
-   top: 0;
+
+   background-color: white;
+   border-radius: 10px;
 }

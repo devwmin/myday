@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { getTestData } from "../utils/data/data";
 import PostList from "../components/home/PostList";
 
 import { db } from "../firebase";
-import { collection, getDocs, doc, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import Menu from "../components/home/Menu";
 
 const Home = ({ mapObj }) => {

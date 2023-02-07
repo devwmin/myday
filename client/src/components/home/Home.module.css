@@ -1,0 +1,55 @@
+.list_container {
+   position: absolute;
+   left: 50px;
+   top: 50px;
+   display: flex;
+   max-height: 50vh;
+}
+.post_wrap {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   overflow-y: auto;
+   background-color: rgba(0, 0, 0, 0.1);
+}
+.post_wrap::-webkit-scrollbar {
+   display: none;
+}
+
+.postbox {
+   width: 300px;
+   border-radius: 10px;
+   font-size: 16px;
+   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+   padding: 10px 0 10px 10px;
+   background-color: white;
+   cursor: pointer;
+}
+.postbox:hover {
+   border: 1px solid black;
+}
+.postbox > span:first-child {
+   margin-right: 15px;
+}
+.postbox > span {
+   pointer-events: none;
+}
+.active {
+   background-color: red;
+}
+
+.menu_container {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   right: 25px;
+   bottom: 50px;
+}
+.menu_container > div {
+   width: 22px;
+   transition: transform 0.3s ease-in-out;
+   cursor: pointer;
+}
+.menu_container > div:hover {
+   transform: scale(1.3);
+}

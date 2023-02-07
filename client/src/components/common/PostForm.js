@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
-import { insertData } from "../../utils/data/data";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
+import styles from "./Common.module.css";
 
 const PostForm = ({ coordinate, data }) => {
    const [rating, setRating] = useState(data?.rating || 2);
@@ -29,10 +29,10 @@ const PostForm = ({ coordinate, data }) => {
       };
       reader.readAsDataURL(file);
    };
-   const onSubmit = async (e) => {
+   const onClick = async (e) => {
+      console.log("submit");
       e.preventDefault();
       if (coordinate) {
-         //insertData(rating, coordinate[0], coordinate[1], comment, file);
          try {
             await addDoc(collection(db, "posts"), {
                rating,
@@ -47,30 +47,43 @@ const PostForm = ({ coordinate, data }) => {
       }
    };
    return (
-      <form onSubmit={onSubmit}>
+      <div className={styles.form}>
          <Rating initialValue={rating} tooltipArray={tooltipArray} showTooltip {...ratingProps} />
-         <div>
+         <div className={styles.form_comment}>
             {coordinate ? (
-               <textarea placeholder="comment" onChange={(e) => setComment(e.target.value)}></textarea>
+               <textarea rows="5" placeholder="comment" onChange={(e) => setComment(e.target.value)}></textarea>
             ) : (
                <span>{comment}</span>
             )}
          </div>
-         <div>
+         <div className={styles.form_file}>
             {coordinate ? (
-               <input
-                  type="file"
-                  alt="image"
-                  placeholder="image"
-                  accept="image/png, image/jpeg"
-                  onChange={onFileChange}
-               />
+               file ? (
+                  <img src={file} alt="preview" />
+               ) : (
+                  <input
+                     type="file"
+                     alt="image"
+                     placeholder="image"
+                     accept="image/png, image/jpeg"
+                     onChange={onFileChange}
+                  />
+               )
             ) : (
                <img src={file} alt="imgfile" />
             )}
          </div>
-         <div>{coordinate && <input type="submit" value="submit" />}</div>
-      </form>
+         {coordinate && (comment || file) && (
+            <div className={styles.form_btn_wrap} title="click">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                     style={{ fill: "#333333" }}
+                     d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+                  />
+               </svg>
+            </div>
+         )}
+      </div>
    );
 };
 

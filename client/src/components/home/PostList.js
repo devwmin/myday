@@ -1,4 +1,4 @@
-import styles from "./PostList.module.css";
+import styles from "./Home.module.css";
 import Post from "./Post";
 import { useRef, useState } from "react";
 import { ScrollBar } from "../common/ScrollBar";
@@ -19,13 +19,13 @@ const PostList = ({ datas, mapObj }) => {
       }
    };
    return (
-      <div className={styles.left_top}>
+      <div className={styles.list_container}>
          <ScrollBar>
             <div className={styles.post_wrap} onClick={itemClick} ref={target}>
                {datas && datas.length > 0 ? (
                   datas?.map((data) => <Post key={data.id} data={data} active={activeId === data.id} />)
                ) : (
-                  <div className={`${styles.box}`}> nothing data </div>
+                  <div className={`${styles.postbox}`}> nothing data </div>
                )}
             </div>
          </ScrollBar>

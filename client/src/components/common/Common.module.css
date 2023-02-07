@@ -1,0 +1,30 @@
+.form {
+   min-width: 40vw;
+   max-width: 70vw;
+   margin: 0 5px;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.form_comment {
+   width: 90%;
+   margin: 10px;
+}
+.form_comment > textarea {
+   width: 100%;
+   border: 1px solid black;
+   resize: none;
+}
+
+.form_file {
+   overflow: hidden;
+}
+.form_file > * {
+   width: 100%;
+}
+
+.form_btn_wrap {
+   width: 22px;
+   margin-top: 10px;
+}
