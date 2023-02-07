@@ -5,6 +5,7 @@ import PostList from "../components/home/PostList";
 
 import { db } from "../firebase";
 import { collection, getDocs, doc, onSnapshot } from "firebase/firestore";
+import Menu from "../components/home/Menu";
 
 const Home = ({ mapObj }) => {
    const [posts, setPosts] = useState([]);
@@ -65,6 +66,7 @@ const Home = ({ mapObj }) => {
    return (
       <>
          <PostList datas={visibles} mapObj={mapObj} />
+         <Menu />
       </>
    );
 };

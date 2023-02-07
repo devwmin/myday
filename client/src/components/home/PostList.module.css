@@ -15,11 +15,15 @@
 .post_wrap::-webkit-scrollbar {
    display: none;
 }
-.btn_wrap {
+
+.menu_container {
+   position: absolute;
    display: flex;
    flex-direction: column;
+   right: 25px;
+   bottom: 50px;
 }
-.btn {
+.menu_item {
    width: 50px;
    height: 30px;
    border-radius: 5px;
@@ -29,6 +33,6 @@
    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
    margin: 0 5px;
 }
-.btn:hover {
+.menu_item:hover {
    transform: scale(1.1);
 }

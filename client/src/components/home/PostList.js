@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import styles from "./PostList.module.css";
 import Post from "./Post";
 import { useRef, useState } from "react";
@@ -7,7 +6,6 @@ import Popup from "../common/Popup";
 import PostForm from "../common/PostForm";
 
 const PostList = ({ datas, mapObj }) => {
-   const navigate = useNavigate();
    const [activeId, setActiveId] = useState();
    const [openPopup, setOpenPopup] = useState(false);
    const target = useRef();
@@ -36,16 +34,6 @@ const PostList = ({ datas, mapObj }) => {
                <PostForm data={datas.find((data) => data.id === activeId)} />
             </Popup>
          )}
-         <div className={styles.btn_wrap}>
-            <button
-               onClick={() => {
-                  navigate("/write");
-               }}
-               className={styles.btn}
-            >
-               +
-            </button>
-         </div>
       </div>
    );
 };

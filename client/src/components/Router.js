@@ -6,12 +6,11 @@ import Map from "./common/Map";
 
 export const AppRouter = () => {
    const [mapObj, setMapObj] = useState();
-
    return (
       <BrowserRouter>
          <Map setMapObj={setMapObj} />
          <Routes>
-            <Route path="/*" element={<Home mapObj={mapObj} setMapObj={setMapObj} />} />
+            <Route path="/*" element={<Home mapObj={mapObj} />} />
             <Route path="/write" element={<Write mapObj={mapObj} />} />
          </Routes>
       </BrowserRouter>
