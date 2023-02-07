@@ -71,7 +71,7 @@ export class OlMap {
          labelPoint: new Point([lon, lat]),
       });
       feature.setGeometryName("labelPoint");
-      feature.setId(id);
+      //feature.setId(id);
       feature.value = value;
       feature.lon = lon;
       feature.lat = lat;

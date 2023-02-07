@@ -2,7 +2,10 @@ import styles from "./Form.module.css";
 import { Rating } from "react-simple-star-rating";
 import { useState } from "react";
 import { insertData } from "../../utils/data/data";
+import { collection, addDoc } from "firebase/firestore";
+
 import { useNavigate } from "react-router-dom";
+import { db } from "../../firebase";
 
 const imageTypeRegex = /image\/(png|jpg|jpeg)/gm;
 
@@ -27,9 +30,20 @@ const Form = ({ coordinate }) => {
       };
       reader.readAsDataURL(file);
    };
-   const onSubmit = (e) => {
+   const onSubmit = async (e) => {
       e.preventDefault();
-      insertData(rating, coordinate[0], coordinate[1], comment, file);
+      //insertData(rating, coordinate[0], coordinate[1], comment, file);
+      try {
+         await addDoc(collection(db, "posts"), {
+            rating,
+            coordinate,
+            comment,
+            file: file ? file : "",
+         });
+      } catch (e) {
+         console.log(e);
+      }
+
       navigate("/");
    };
    return (

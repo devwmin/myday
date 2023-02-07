@@ -3,15 +3,25 @@ import axios from "axios";
 import { getTestData } from "../utils/data/data";
 import PostList from "../components/home/PostList";
 
+import { db } from "../firebase";
+import { collection, getDocs, doc, onSnapshot } from "firebase/firestore";
+
 const Home = ({ mapObj }) => {
-   const [datas, setDatas] = useState([]);
+   const [posts, setPosts] = useState([]);
    //visible features
    const [visibles, setVisibles] = useState([]);
 
    const fetchData = async () => {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const datas = await axios.get(`${apiUrl}/point`).catch((_) => getTestData());
-      setDatas(datas);
+      const unsubscribe = onSnapshot(collection(db, "posts"), (snapshot) => {
+         const postArray = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+         }));
+         setPosts(postArray);
+      });
+
+      // Stop listening to changes
+      return unsubscribe;
    };
    // map move event
    useEffect(() => {
@@ -37,12 +47,12 @@ const Home = ({ mapObj }) => {
    useEffect(() => {
       if (mapObj) {
          mapObj.clearFeatures();
-         datas.forEach((data) => {
-            mapObj.addFeature(data.id, data, data.longitude, data.latitude);
+         posts.forEach((post) => {
+            mapObj.addFeature(post.id, post, post.coordinate[0], post.coordinate[1]);
          });
          setVisibles(mapObj.getVisibleFeatures().map((feature) => feature.value));
       }
-   }, [mapObj, datas]);
+   }, [mapObj, posts]);
    // unmount - clear features
    useEffect(() => {
       return () => {
