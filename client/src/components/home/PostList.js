@@ -4,7 +4,7 @@ import Post from "./Post";
 import { useRef, useState } from "react";
 import { ScrollBar } from "./ScrollBar";
 import Popup from "../Popup";
-import Detail from "./Detail";
+import PostForm from "../PostForm";
 
 const PostList = ({ datas, mapObj }) => {
    const navigate = useNavigate();
@@ -33,7 +33,7 @@ const PostList = ({ datas, mapObj }) => {
          </ScrollBar>
          {openPopup && (
             <Popup onClose={() => setOpenPopup(false)}>
-               <Detail data={datas.find((data) => data.id === activeId)} />
+               <PostForm data={datas.find((data) => data.id === activeId)} />
             </Popup>
          )}
          <div className={styles.btn_wrap}>

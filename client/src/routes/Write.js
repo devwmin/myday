@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Marker from "../components/write/Marker";
-import Form from "../components/write/Form";
 import Popup from "../components/Popup";
+import PostForm from "../components/PostForm";
 
 const Write = ({ mapObj }) => {
    const markerRef = useRef();
@@ -33,7 +33,7 @@ const Write = ({ mapObj }) => {
          {coordinate && <Marker markerRef={markerRef} onClick={() => setWrting(true)} />}
          {writing && (
             <Popup onClose={() => setWrting(false)}>
-               <Form coordinate={coordinate} />
+               <PostForm coordinate={coordinate} />
             </Popup>
          )}
       </div>
